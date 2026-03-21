@@ -25,10 +25,10 @@ Este documento detalla la configuración inicial del hardware para el proyecto d
 - Integrar sensores y otras funciones.  
 
 ## Esquema
-imagenes/esquema1.png
-imagenes/esquema2.png
+![Esquema 1](imagenes/esquema1.png)
+![Esquema 2](imagenes/esquema2.png)
 
-##Imagenes de connexión realizada
-imagenes/montaje 1.jpeg
-imagenes/montaje 2.jpeg
-imagenes/montaje 3.jpeg
+## Imágenes de conexión realizada
+![Montaje 1](imagenes/montaje1.jpeg)
+![Montaje 2](imagenes/montaje2.jpeg)
+![Montaje 3](imagenes/montaje3.jpeg)
