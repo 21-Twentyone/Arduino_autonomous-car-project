@@ -24,7 +24,11 @@ Este documento detalla la configuración inicial del hardware para el proyecto d
 - Programar el Arduino para controlar cuando detecta obstaculos y buscar una ruta para evitarles. 
 - Integrar sensores y otras funciones.  
 
-## Esquema opcional
-
+## Esquema
+imagenes/esquema1.png
+imagenes/esquema2.png
 
 ##Imagenes de connexión realizada
+imagenes/montaje 1.jpeg
+imagenes/montaje 2.jpeg
+imagenes/montaje 3.jpeg
