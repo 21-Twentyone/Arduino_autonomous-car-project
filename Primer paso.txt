@@ -1,0 +1,30 @@
+# Proyecto de coche con Arduino: configuración del hardware
+
+## Objetivo
+Este documento detalla la configuración inicial del hardware para el proyecto de coche con Arduino. En esta fase, el coche puede moverse utilizando únicamente la batería de 9 V y el controlador de motor, sin necesidad de programación.
+
+## Componentes utilizados
+- Arduino Uno   
+- Módulo controlador de motor L9110  
+- Motores de corriente continua  
+- Batería de 9 V con conector  
+- Placa de pruebas y cables de puente  
+- Chasis y ruedas  
+
+## Conexiones
+- Motores conectados al controlador de motor L9110.  
+- Controlador de motor conectado a Arduino.  
+- Batería de 9 V conectada al  Arduino para la alimentación.  
+
+## Observaciones
+- Cuando se conecta la batería de 9 V, los motores giran y el coche se mueve.  
+- Aún no se ha realizado ninguna programación en Arduino.  
+
+## Próximos pasos
+- Programar el Arduino para controlar cuando detecta obstaculos y buscar una ruta para evitarles. 
+- Integrar sensores y otras funciones.  
+
+## Esquema opcional
+
+
+##Imagenes de connexión realizada
