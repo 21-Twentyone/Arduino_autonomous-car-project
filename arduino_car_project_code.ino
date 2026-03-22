@@ -1,9 +1,155 @@
-void setup() {
-  // put your setup code here, to run once:
+const int a1 = 6;
+const int a2 = 5;
+const int go= 12; //green light
+const int b1A = 10;
+const int b2A = 9;
 
+
+unsigned long previousTime = 0;
+unsigned long interval = 3000;
+
+void moveforward(){
+  digitalWrite(a1,HIGH);
+  digitalWrite(a2,LOW);
+  digitalWrite(b1A,LOW);
+  digitalWrite(b2A,HIGH);
+  digitalWrite(go,HIGH);
 }
 
-void loop() {
-  // put your main code here, to run repeatedly:
+void movebackward(){
+  digitalWrite(a1,LOW);
+  digitalWrite(a2,HIGH);
+  digitalWrite(b1A,HIGH);
+  digitalWrite(b2A,LOW);
+  digitalWrite(go,LOW);
+}
+
+void turn_left(){
+  // Right wheel moves forward
+  digitalWrite(a1,HIGH);
+  digitalWrite(a2,LOW);
+
+  // Left wheel stopped
+  digitalWrite(b1A,LOW);
+  digitalWrite(b2A,LOW);
+
+  digitalWrite(go,HIGH);
+}
+
+void turn_right(){
+  // Left wheel moves forward
+  digitalWrite(b1A,LOW);
+  digitalWrite(b2A,HIGH);
+
+  // Right wheel stopped
+  digitalWrite(a1,LOW);
+  digitalWrite(a2,LOW);
+
+  digitalWrite(go,HIGH);
+}
+
+void stop_move(){
+  digitalWrite(a1,LOW);
+  digitalWrite(a2,LOW);
+  digitalWrite(b1A,LOW);
+  digitalWrite(b2A,LOW);
+  digitalWrite(go,LOW);
+}
+
+void setup() {
+  pinMode(a1, OUTPUT);
+  pinMode(a2, OUTPUT); 
+  pinMode(b1A, OUTPUT);
+  pinMode(b2A, OUTPUT);
+  pinMode(go,OUTPUT);
+}
+
+void loop() { //the goal is for the car to move in the figure "8"
+unsigned long currentTime = millis();  
+
+if (currentTime - previousTime >= interval){
+  turn_right();
+  delay(475);
+  stop_move();
+  delay(500);
+  
+  moveforward();
+  delay(600);
+  stop_move();
+  delay(500);
+
+  turn_right();
+  delay(475);
+  stop_move();
+  delay(500);
+
+  moveforward();
+  delay(600);
+  stop_move();
+  delay(500);
+  
+  turn_right();
+  delay(475);
+  stop_move();
+  delay(500);
+
+  moveforward();
+  delay(600);
+  stop_move();
+  delay(500);
+
+  turn_left();
+  delay(475);
+  stop_move();
+  delay(500);
+
+  moveforward();
+  delay(600);
+  stop_move();
+  delay(500);
+
+  turn_left();
+  delay(475);
+  stop_move();
+  delay(500);
+
+  moveforward();
+  delay(600);
+  stop_move();
+  delay(500);
+
+  turn_left();
+  delay(475);
+  stop_move();
+  delay(500);
+
+  moveforward();
+  delay(600);
+  stop_move();
+  delay(500);
+
+  turn_left();
+  delay(475);
+  stop_move();
+  delay(500);
+
+  moveforward();
+  delay(600);
+  stop_move();
+  delay(500);
+
+  turn_right();
+  delay(475);
+  stop_move();
+  delay(500);
+
+  moveforward();
+  delay(600);
+  stop_move();
+  delay(500);
+
+
+  previousTime = millis();
+}
 
 }
