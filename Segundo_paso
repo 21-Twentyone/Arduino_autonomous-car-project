@@ -158,6 +158,11 @@ if (currentTime - previousTime >= interval){
 
   previousTime = millis();
 }
-
 }
 
+##Imagenes y demo
+![Image](https://github.com/user-attachments/assets/221831d6-a25c-4dca-8f45-2af8a12256f7)
+![Image](https://github.com/user-attachments/assets/996e3bd5-56a8-43e6-9621-7e756ad3cd0c)
+https://github.com/user-attachments/assets/11b2f8ea-0f38-47fb-8575-4abb19329c82
+![Image](https://github.com/user-attachments/assets/309689b7-bff2-4480-887b-32204b107b62)
+![Image](https://github.com/user-attachments/assets/899f9698-e286-4296-a0be-af962971e7c8)
