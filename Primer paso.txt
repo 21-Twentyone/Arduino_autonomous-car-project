@@ -25,10 +25,12 @@ Este documento detalla la configuración inicial del hardware para el proyecto d
 - Integrar sensores y otras funciones.  
 
 ## Esquema
-![Esquema 1](imagenes/esquema1.png)
-![Esquema 2](imagenes/esquema2.png)
+![Image](https://github.com/user-attachments/assets/25502145-3bd8-4ae3-9967-e903b83607f2)
 
 ## Imágenes de conexión realizada
-![Montaje 1](imagenes/montaje1.jpeg)
-![Montaje 2](imagenes/montaje2.jpeg)
-![Montaje 3](imagenes/montaje3.jpeg)
+![Image](https://github.com/user-attachments/assets/af9a351c-ad7d-446b-be9a-97b565b3b882)
+![Image](https://github.com/user-attachments/assets/cfc39ffd-dd67-481c-8f16-23b411a58fee)
+![Image](https://github.com/user-attachments/assets/034b0118-55ac-4c43-97a4-23354604ac22)
+
+##demo
+https://github.com/user-attachments/assets/6ffe6158-b012-4242-bb18-68f613d82a00
