@@ -21,6 +21,7 @@ Este documento detalla la configuración inicial del hardware para el proyecto d
 - Aún no se ha realizado ninguna programación en Arduino.  
 
 ## Próximos pasos
+-Hacer que el coche se mueva según lo que este en el código.
 - Programar el Arduino para controlar cuando detecta obstaculos y buscar una ruta para evitarles. 
 - Integrar sensores y otras funciones.  
 
