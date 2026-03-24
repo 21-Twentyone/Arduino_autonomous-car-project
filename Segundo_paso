@@ -14,12 +14,11 @@ Esta fase se centra en el control preciso del movimiento, la sincronización y l
 | - - - - |  
 
 
-Las limitaciones que destacan al moverse en el patron definido son:
-  1. El desequilibrio del motor.
-  2. Las curvas podrían resultar demasiado cerradas o demasiado abiertas, lo que daría lugar a una figura de 8 imperfecta.
+Los problemas encontrado al moverse en el patron definido son:
+  El desequilibrio del motor causando que los giros podrían resultar demasiado cerradas o demasiado abiertas, lo que daría lugar a una figura de 8 imperfecta.
 
 Possible solución:
-La integración del sensor IR de detección de linea.
+La integración del sensor IR de detección de linea o ajustando el delay de los giros.
 
 ## codigo
 
