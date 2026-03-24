@@ -14,7 +14,7 @@ Esta fase se centra en el control preciso del movimiento, la sincronización y l
 | - - - - |  
 
 
-Los problemas encontrado al moverse en el patron definido son:
+El problema encontrado al moverse en el patron definido es:
   El desequilibrio del motor causando que los giros podrían resultar demasiado cerradas o demasiado abiertas, lo que daría lugar a una figura de 8 imperfecta.
 
 Possible solución:
