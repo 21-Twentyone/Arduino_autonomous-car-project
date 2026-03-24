@@ -7,6 +7,8 @@ Las limitaciones que destacan al moverse en el patron definido son:
   1. El desequilibrio del motor.
   2. Las curvas podrían resultar demasiado cerradas o demasiado abiertas, lo que daría lugar a una figura de 8 imperfecta.
 
+Possible solución:
+La integración del sensor IR de detección de linea.
 
 ## codigo
 
