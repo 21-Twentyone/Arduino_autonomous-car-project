@@ -32,7 +32,4 @@ Este proyecto consiste en el desarrollo de un vehículo autónomo basado en Ardu
 🚧 Estado Actual:
 Actualmente el proyecto se encuentra en la fase inicial de movimiento básico, trabajando en mejorar la precisión de los desplazamientos.
 
-▶️ Uso
-  -Cargar el código en Arduino
-  -Conectar los componentes
-  -Ejecutar el programa
+>>>Para ver los demos y las imagenes, copia el enlace y pegarlo en la barra donde va los URLs.
