@@ -21,13 +21,15 @@ Possible solución:
 La integración del sensor IR de detección de linea o ajustando el delay de los giros.
 
 ## codigo
-
 const int a1 = 6;
 const int a2 = 5;
 const int go= 12; //green light
 const int b1A = 10;
 const int b2A = 9;
 
+int forward_time=600;
+int right_turn_time=422;
+int left_turn_time=535;
 
 unsigned long previousTime = 0;
 unsigned long interval = 3000;
@@ -92,90 +94,56 @@ void loop() { //the goal is for the car to move in the figure "8"
 unsigned long currentTime = millis();  
 
 if (currentTime - previousTime >= interval){
-  turn_right();
-  delay(475);
-  stop_move();
-  delay(500);
-  
-  moveforward();
-  delay(600);
-  stop_move();
-  delay(500);
 
-  turn_right();
-  delay(475);
+   // Top square
+  moveforward(); 
+  delay(forward_time);
+  turn_right();  
+  delay(right_turn_time);
+
+  moveforward(); 
+  delay(forward_time);
+  turn_right();  
+  delay(right_turn_time);
+
+  moveforward(); 
+  delay(forward_time);
+  turn_right();  
+  delay(right_turn_time);
+
+  moveforward(); 
+  delay(forward_time);
+  turn_right();  
+  delay(right_turn_time);
+
+  // Bottom square
+  moveforward(); 
+  delay(forward_time);
+  turn_left();   
+  delay(left_turn_time);
+
+  moveforward(); 
+  delay(forward_time);
+  turn_left();   
+  delay(left_turn_time);
+
+  moveforward(); 
+  delay(forward_time);
+  turn_left();   
+  delay(left_turn_time);
+
+  moveforward(); 
+  delay(forward_time);
+  turn_left();   
+  delay(left_turn_time);
+
   stop_move();
   delay(500);
-
-  moveforward();
-  delay(600);
-  stop_move();
-  delay(500);
-  
-  turn_right();
-  delay(475);
-  stop_move();
-  delay(500);
-
-  moveforward();
-  delay(600);
-  stop_move();
-  delay(500);
-
-  turn_left();
-  delay(475);
-  stop_move();
-  delay(500);
-
-  moveforward();
-  delay(600);
-  stop_move();
-  delay(500);
-
-  turn_left();
-  delay(475);
-  stop_move();
-  delay(500);
-
-  moveforward();
-  delay(600);
-  stop_move();
-  delay(500);
-
-  turn_left();
-  delay(475);
-  stop_move();
-  delay(500);
-
-  moveforward();
-  delay(600);
-  stop_move();
-  delay(500);
-
-  turn_left();
-  delay(475);
-  stop_move();
-  delay(500);
-
-  moveforward();
-  delay(600);
-  stop_move();
-  delay(500);
-
-  turn_right();
-  delay(475);
-  stop_move();
-  delay(500);
-
-  moveforward();
-  delay(600);
-  stop_move();
-  delay(500);
-
-
+   
   previousTime = millis();
 }
 }
+
 
 ##Imagenes
 ![Image](https://github.com/user-attachments/assets/221831d6-a25c-4dca-8f45-2af8a12256f7)
