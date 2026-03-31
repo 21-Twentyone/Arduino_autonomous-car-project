@@ -1,3 +1,21 @@
+Objetivo
+
+Implementar un sistema de navegación autónoma que permita al coche seguir una línea en el suelo mediante el uso de un sensor infrarrojo.
+
+⚙️ Concepto de funcionamiento
+
+El módulo de seguimiento de línea utiliza un sensor IR para detectar diferencias de color basadas en la reflexión:
+
+Superficie oscura (negra) → absorbe luz → detectada como línea
+Superficie clara (blanca) → refleja luz → detectada como fondo
+
+El Arduino lee constantemente este valor y ajusta el movimiento del coche en tiempo real.
+
+Lá lógica detras del functionamiento es que el arduino hace que el motor siga una linea y tambien realiza pequeños giros(ajustes) cuando es necesario para volver a la linea.
+
+##nueva material usado: Sensor de linea basado de Infrarojo
+
+##código
 const int a1 = 6;
 const int a2 = 5;
 const int go= 12; //green light
@@ -74,3 +92,6 @@ if (lineColour==1){ //line detected, so value is equal to 1
 
 
 }
+
+
+##demo video
