@@ -13,8 +13,8 @@ Este proyecto consiste en el desarrollo de un vehículo autónomo basado en Ardu
   🔹 Fase 1 — Movimiento Básico:
     El coche realiza movimientos simples (avanzar, girar, etc.) mediante secuencias programadas.
 
-🔹 Fase 2 — Movimiento Estructurado:
-    Se implementarán movimientos por intervalos o patrones aleatorios.
+🔹 Fase 2 — Movimiento Estructurado: 
+    Se implementarán movimientos por intervalos o patrones aleatorios y también la incorporación del sensor de seguimiento de linea.
 
 🔹 Fase 3 — Evitación de Obstáculos:
     Uso de sensores para detectar y evitar obstáculos.
