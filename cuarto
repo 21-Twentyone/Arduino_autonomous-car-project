@@ -1,3 +1,28 @@
+En esta fase se integra un sensor ultrasónico HC-SR04 al sistema de navegación del robot. Este sensor permite medir la distancia a obstáculos frontales mediante ondas de sonido, lo que añade una capa de percepción del entorno que antes no existía.
+
+El comportamiento del robot pasa a ser reactivo e híbrido: los sensores IR siguen guiando la dirección general, pero el ultrasonido tiene prioridad cuando detecta objetos cercanos en la parte frontal. En ese caso, el sistema interrumpe el movimiento normal, ejecuta una secuencia de seguridad (parar → retroceder → girar) y luego continúa la navegación.
+
+Esto mejora significativamente la seguridad del robot, evitando colisiones directas y permitiendo una navegación más autónoma en entornos desconocidos.
+
+Objetivos
+-Detectar obstáculos frontales
+-Detener y evitar colisiones
+-Mantener navegación con sensores IR
+
+Hardware
+-Arduino Uno
+-Driver de motores (L298N)
+-2 motores DC
+-HC-SR04
+-Sensores IR (izq/der)
+
+Lógica de evitación
+Si hay obstáculo cerca:
+-Parar
+-Retroceder
+-Girar
+
+Código
 const int a1 = 6;
 const int a2 = 5;
 const int b1A = 10;
@@ -14,8 +39,8 @@ int back_speed=150;
 int baseSpeed = 140;
 int leftOffset = 10;
 
-int startBoost = 180;     
-int boostTime = 100;      
+int startBoost = 180;
+int boostTime = 100;
 
 long readDist(){
   digitalWrite(trigpin, LOW);
@@ -66,7 +91,7 @@ void turn_left(){
 void turn_right(){
   // Left wheel moves forward faster
   analogWrite(b1A,0);
-  analogWrite(b2A,turn_speed); 
+  analogWrite(b2A,turn_speed);
   // Right wheel spins slower
   analogWrite(a1,0);
   analogWrite(a2,0);
@@ -82,7 +107,7 @@ void stop_move(){
 void setup() {
   Serial.begin(9600);
   pinMode(a1, OUTPUT);
-  pinMode(a2, OUTPUT); 
+  pinMode(a2, OUTPUT);
   pinMode(b1A, OUTPUT);
   pinMode(b2A, OUTPUT);
   pinMode(linetrack,INPUT);
@@ -104,7 +129,7 @@ moveBackward();
 delay(300);
 if (right && !left){
   turn_right();
-} 
+}
 else{
   turn_left();
 }
@@ -113,20 +138,13 @@ return;
 
 if (right && !left){
   turn_right();
-} 
+}
 else if (left && !right){
   turn_left();
-} 
+}
 else {
   moveForward();
 }
 }
-/*
-if (lineColour==1){ //line detected, so value is equal to 1
-  moveforward();
 
-}else{ //no line detected.
-  turn_left();
-}
-*/
-
+DEMO
