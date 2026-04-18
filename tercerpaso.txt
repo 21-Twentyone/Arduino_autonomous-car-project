@@ -16,83 +16,131 @@ Lá lógica detras del functionamiento es que el arduino hace que el motor siga 
 ##nueva material usado: Sensor de linea basado de Infrarojo
 
 ##código
+// Motor pins
 const int a1 = 6;
 const int a2 = 5;
-const int go= 12; //green light
 const int b1A = 10;
 const int b2A = 9;
-const int linetrack=2;
 
-int little_delay=10;
-int speed=150; // the velocity at which the wheels spin 
-int turn_speed=100;
+// IR sensors
+const int ir_left = 13;
+const int ir_right = 2;
 
-void moveforward(){
-  analogWrite(a1,speed);
-  digitalWrite(a2,0);
-  digitalWrite(b1A,0);
-  analogWrite(b2A,speed);
-  digitalWrite(go,HIGH);
-}
+// Speed settings
+int speed = 150;
+int turn_speed = 100;
 
-void turn_left(){
-  // Right wheel moves forward faster
-  analogWrite(a1,turn_speed);
-  analogWrite(a2,0);
-
-  // Left wheel spins slower
-  analogWrite(b1A,0);
-  analogWrite(b2A,0);
-
-  digitalWrite(go,HIGH);
-}
-
-void turn_right(){
-  // Left wheel moves forward faster
-  analogWrite(b1A,0);
-  analogWrite(b2A,turn_speed); 
-
-  // Right wheel spins slower
-  analogWrite(a1,0);
-  analogWrite(a2,0);
-
-  digitalWrite(go,HIGH);
-}
-
-void stop_move(){
-  analogWrite(a1,0);
-  analogWrite(a2,0);
-  analogWrite(b1A,0);
-  analogWrite(b2A,0);
-  digitalWrite(go,LOW);
-}
+// Last known direction
+// -1 = left, 1 = right, 0 = straight
+int last_position = 0;
 
 void setup() {
-  Serial.begin(9600);
-
   pinMode(a1, OUTPUT);
-  pinMode(a2, OUTPUT); 
+  pinMode(a2, OUTPUT);
   pinMode(b1A, OUTPUT);
   pinMode(b2A, OUTPUT);
-  pinMode(go,OUTPUT);
-  pinMode(linetrack,INPUT);
+
+  pinMode(ir_left, INPUT);
+  pinMode(ir_right, INPUT);
+
+  Serial.begin(9600); // for debugging
 }
 
-void loop() { //the goal is for the car to move in the figure "8" using the linetracking module
+void loop() {
+  int left = digitalRead(ir_left);
+  int right = digitalRead(ir_right);
 
-int lineColour=digitalRead(linetrack);
-Serial.println(lineColour);
+  Serial.print("L: "); Serial.print(left);
+  Serial.print(" R: "); Serial.println(right);
 
-if (lineColour==1){ //line detected, so value is equal to 1
-  moveforward();
+  // BOTH ON LINE → go straight
+  if (left == 0 && right == 0) {
+    moveForward();
+    last_position = 0;
+  }
 
-}else{ //no line detected.
-  turn_left();
+  // LEFT SENSOR OFF → drifted right → turn LEFT
+  else if (left == 1 && right == 0) {
+    turnLeft();
+    last_position = -1;
+  }
+
+  // RIGHT SENSOR OFF → drifted left → turn RIGHT
+  else if (left == 0 && right == 1) {
+    turnRight();
+    last_position = 1;
+  }
+
+  // BOTH OFF → LOST LINE → use memory
+  else if (left == 1 && right == 1) {
+    if (last_position == -1) {
+      turnLeft();   // keep searching left
+    }
+    else if (last_position == 1) {
+      turnRight();  // keep searching right
+    }
+    else {
+      stopMotors(); // no idea → stop (safe)
+    }
+  }// BOTH ON LINE → go straight
+if (left == 1 && right == 1) {
+  moveForward();
+  last_position = 0;
 }
 
-
+// LEFT SENSOR OFF → drifted right → turn LEFT
+else if (left == 0 && right == 1) {
+  turnLeft();
+  last_position = -1;
 }
 
+// RIGHT SENSOR OFF → drifted left → turn RIGHT
+else if (left == 1 && right == 0) {
+  turnRight();
+  last_position = 1;
+}
+
+// BOTH OFF → LOST LINE → use memory
+else if (left == 0 && right == 0) {
+  if (last_position == -1) {
+    turnLeft();
+  }
+  else if (last_position == 1) {
+    turnRight();
+  }
+  else {
+    stopMotors();
+  }
+}
+}
+
+void moveForward() {
+  analogWrite(a1, speed);
+  digitalWrite(a2, LOW);
+  digitalWrite(b1A, LOW);
+  analogWrite(b2A, speed);
+}
+
+void turnLeft() {
+  analogWrite(a1, turn_speed);
+  digitalWrite(a2, LOW);
+  digitalWrite(b1A, LOW);
+  analogWrite(b2A, speed);
+}
+
+void turnRight() {
+  analogWrite(a1, speed);
+  digitalWrite(a2, LOW);
+  digitalWrite(b1A, LOW);
+  analogWrite(b2A, turn_speed);
+}
+
+void stopMotors() {
+  digitalWrite(a1, LOW);
+  digitalWrite(a2, LOW);
+  digitalWrite(b1A, LOW);
+  digitalWrite(b2A, LOW);
+}
 
 ##demo video
 https://github.com/user-attachments/assets/862bf57a-c0be-4094-96bd-2ed7d6b6902c
