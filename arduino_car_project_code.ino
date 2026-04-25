@@ -10,11 +10,11 @@ const int echopin=4;
 const int stopDistance=15;
 
 int turn_speed=100;
-int back_speed=150;
-int baseSpeed = 140;
+int back_speed=130;
+int baseSpeed = 120;
 int leftOffset = 10;
 
-int startBoost = 180;     
+int startBoost = 150;     
 int boostTime = 100;      
 
 long readDist(){
@@ -101,7 +101,8 @@ Serial.println(distance);
 if (distance > 0 && distance < stopDistance) {
 
 moveBackward();
-delay(300);
+delay(200);
+
 if (right && !left){
   turn_right();
 } 
