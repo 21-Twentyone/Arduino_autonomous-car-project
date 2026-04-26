@@ -28,19 +28,19 @@ const int a2 = 5;
 const int b1A = 10;
 const int b2A = 9;
 const int linetrack=2;
-const int ir_right=12;
-const int ir_left=11;
+const int ir_right=7;
+const int ir_left=8;
 const int trigpin=3;
 const int echopin=4;
 const int stopDistance=15;
 
 int turn_speed=100;
-int back_speed=150;
-int baseSpeed = 140;
+int back_speed=130;
+int baseSpeed = 120;
 int leftOffset = 10;
 
-int startBoost = 180;
-int boostTime = 100;
+int startBoost = 150;     
+int boostTime = 100;      
 
 long readDist(){
   digitalWrite(trigpin, LOW);
@@ -91,7 +91,7 @@ void turn_left(){
 void turn_right(){
   // Left wheel moves forward faster
   analogWrite(b1A,0);
-  analogWrite(b2A,turn_speed);
+  analogWrite(b2A,turn_speed); 
   // Right wheel spins slower
   analogWrite(a1,0);
   analogWrite(a2,0);
@@ -107,7 +107,7 @@ void stop_move(){
 void setup() {
   Serial.begin(9600);
   pinMode(a1, OUTPUT);
-  pinMode(a2, OUTPUT);
+  pinMode(a2, OUTPUT); 
   pinMode(b1A, OUTPUT);
   pinMode(b2A, OUTPUT);
   pinMode(linetrack,INPUT);
@@ -126,10 +126,11 @@ Serial.println(distance);
 if (distance > 0 && distance < stopDistance) {
 
 moveBackward();
-delay(300);
+delay(200);
+
 if (right && !left){
   turn_right();
-}
+} 
 else{
   turn_left();
 }
@@ -138,13 +139,23 @@ return;
 
 if (right && !left){
   turn_right();
-}
+} 
 else if (left && !right){
   turn_left();
-}
+} 
 else {
   moveForward();
 }
 }
+/*
+if (lineColour==1){ //line detected, so value is equal to 1
+  moveforward();
+
+}else{ //no line detected.
+  turn_left();
+}
+*/
+
+
 
 DEMO
