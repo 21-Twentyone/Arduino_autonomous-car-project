@@ -30,17 +30,14 @@ const int b2A = 9;
 const int linetrack=2;
 const int ir_right=7;
 const int ir_left=8;
-const int trigpin=3;
-const int echopin=4;
+const int trigpin=A0;
+const int echopin=A1;
 const int stopDistance=15;
 
-int turn_speed=100;
-int back_speed=130;
-int baseSpeed = 120;
-int leftOffset = 10;
-
-int startBoost = 150;     
-int boostTime = 100;      
+int speed = 120;
+int turn_speed = 90;
+int boost=170;
+int boost_duration=20;      
 
 long readDist(){
   digitalWrite(trigpin, LOW);
@@ -56,53 +53,52 @@ long readDist(){
   return distance;
 }
 
-void moveForward() {
-  int leftSpeed = baseSpeed - leftOffset;
+void moveforward() {
+  analogWrite(a1,boost-10);
+  analogWrite(b2A,boost);
+  delay(boost_duration);
+  //gives an initial boost to the wheels
+  analogWrite(a1, speed-10);
+  analogWrite(b2A, speed);
+  digitalWrite(a2, 0);
+  digitalWrite(b1A, 0);
+}
+void turn_left() {
+  analogWrite(a1,boost);
+  delay(boost_duration);
 
-  analogWrite(a1, startBoost);
-  digitalWrite(a2, LOW);
-  analogWrite(b2A, startBoost);
-  digitalWrite(b1A, LOW);
-  delay(boostTime);
+  analogWrite(a1, turn_speed);
+  analogWrite(a2, 0);
+  analogWrite(b1A, 0);
+  analogWrite(b2A, 0);
+}
+void turn_right() {
+  analogWrite(b1A, 0);
+  analogWrite(b2A,boost);
+  delay(boost_duration);
 
- 
-  analogWrite(a1, leftSpeed);
-  digitalWrite(a2, LOW);
-  analogWrite(b2A, baseSpeed);
-  digitalWrite(b1A, LOW);
+  analogWrite(b2A, turn_speed);
+  analogWrite(a1, 0);
+  analogWrite(a2, 0);
+}
+void stop_move(){
+  analogWrite(a1, 0);
+  analogWrite(a2, 0);
+  analogWrite(b1A, 0);
+  analogWrite(b2A, 0);
 }
 
 void moveBackward(){
-  analogWrite(a2,back_speed);
+  analogWrite(a2,boost);
+  analogWrite(b1A,boost);
+  delay(boost_duration);
+
+  analogWrite(a2,speed);
   digitalWrite(a1,0);
-  analogWrite(b1A,back_speed);
+  analogWrite(b1A,speed);
   digitalWrite(b2A,0);
 }
 
-void turn_left(){
-  // Right wheel moves forward faster
-  analogWrite(a1,turn_speed);
-  analogWrite(a2,0);
-  // Left wheel spins slower
-  analogWrite(b1A,0);
-  analogWrite(b2A,0);
-}
-
-void turn_right(){
-  // Left wheel moves forward faster
-  analogWrite(b1A,0);
-  analogWrite(b2A,turn_speed); 
-  // Right wheel spins slower
-  analogWrite(a1,0);
-  analogWrite(a2,0);
-}
-
-void stop_move(){
-  analogWrite(a1,0);
-  analogWrite(a2,0);
-  analogWrite(b1A,0);
-  analogWrite(b2A,0);
-}
 
 void setup() {
   Serial.begin(9600);
@@ -144,18 +140,9 @@ else if (left && !right){
   turn_left();
 } 
 else {
-  moveForward();
-}
-}
-/*
-if (lineColour==1){ //line detected, so value is equal to 1
   moveforward();
-
-}else{ //no line detected.
-  turn_left();
 }
-*/
+}
 
 
 
-DEMO
