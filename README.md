@@ -58,7 +58,7 @@ A multi-mode autonomous car built with Arduino, controlled via Bluetooth using t
 | 7 | IR Sensor – Right |
 | A0 | Ultrasonic Trigger |
 | A1 | Ultrasonic Echo |
-| 2 (RX) / 3 (TX) | HC-05 Bluetooth (Dabble) |
+| 12 (RX) / 11 (TX) | HC-05 Bluetooth (Dabble) |
 
 ---
 
