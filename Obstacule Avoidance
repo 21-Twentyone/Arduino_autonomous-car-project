@@ -23,6 +23,8 @@ Si hay obstáculo cerca:
 -Girar
 
 Código
+#include <EEPROM.h>
+
 const int a1 = 6;
 const int a2 = 5;
 const int b1A = 10;
@@ -34,10 +36,11 @@ const int trigpin=A0;
 const int echopin=A1;
 const int stopDistance=15;
 
-int speed = 120;
-int turn_speed = 90;
-int boost=170;
-int boost_duration=20;      
+int speed = 150;
+int turn_speed = 150;
+
+float leftOffset=1.0;
+float rightOffset=1.0;      
 
 long readDist(){
   digitalWrite(trigpin, LOW);
@@ -47,25 +50,19 @@ long readDist(){
   delayMicroseconds(10);
   digitalWrite(trigpin, LOW);
 
-  long duration = pulseIn(echopin, HIGH, 20000); // timeout added
+  long duration = pulseIn(echopin, HIGH, 5000); // timeout added
   long distance = duration * 0.034 / 2;
 
   return distance;
 }
 
 void moveforward() {
-  analogWrite(a1,boost-10);
-  analogWrite(b2A,boost);
-  delay(boost_duration);
-  //gives an initial boost to the wheels
-  analogWrite(a1, speed-10);
-  analogWrite(b2A, speed);
+  analogWrite(a1, int(speed*rightOffset));
+  analogWrite(b2A, int(speed*leftOffset));
   digitalWrite(a2, 0);
   digitalWrite(b1A, 0);
 }
 void turn_left() {
-  analogWrite(a1,boost);
-  delay(boost_duration);
 
   analogWrite(a1, turn_speed);
   analogWrite(a2, 0);
@@ -73,10 +70,6 @@ void turn_left() {
   analogWrite(b2A, 0);
 }
 void turn_right() {
-  analogWrite(b1A, 0);
-  analogWrite(b2A,boost);
-  delay(boost_duration);
-
   analogWrite(b2A, turn_speed);
   analogWrite(a1, 0);
   analogWrite(a2, 0);
@@ -89,10 +82,6 @@ void stop_move(){
 }
 
 void moveBackward(){
-  analogWrite(a2,boost);
-  analogWrite(b1A,boost);
-  delay(boost_duration);
-
   analogWrite(a2,speed);
   digitalWrite(a1,0);
   analogWrite(b1A,speed);
@@ -111,6 +100,10 @@ void setup() {
   pinMode(ir_left,INPUT);
   pinMode(echopin,INPUT);
   pinMode(trigpin,OUTPUT);
+  EEPROM.write(0, 80); //write the offset to the left motor
+  EEPROM.write(1, 93); //write the offset to the right motor
+  leftOffset = EEPROM.read(0) * 0.01; //read the offset
+  rightOffset = EEPROM.read(1) * 0.01;//read the offset
 }
 
 void loop() {
@@ -143,6 +136,9 @@ else {
   moveforward();
 }
 }
+
+
+
 
 
 
